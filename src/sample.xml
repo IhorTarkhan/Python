@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE geometry SYSTEM "sample.dtd" >
+<geometry>
+    <polygons id="1">
+        <vertex id="1" x="ff" y="ddd"/>
+        <vertex id="vertex_idf" x="fff" y="dddd"/>
+        <vertex id="vertex_id" x="ffff" y="dada"/>
+    </polygons>
+    <polygons id="uyjf">
+        <vertex id="qw" x="rwe" y="jg"/>
+    </polygons>
+</geometry>
