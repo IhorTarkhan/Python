@@ -33,3 +33,20 @@ xml_str = root.toxml()
 save_path_file = "countries.xml"
 with open(save_path_file, "w") as f:
     f.write(xml_str)
+
+import xml
+from xml.dom.minidom import Document, Element
+
+save_path_file = "countries.xml"
+with xml.dom.minidom.parse(save_path_file) as dom:
+    dom2: Document = dom
+    mapElement: Element = dom2.getElementsByTagName("map")[0]
+    print(mapElement.getAttribute("id"))
+    lis = mapElement.childNodes
+    for node in lis:
+        # print(type(node))
+        # node: Element = node
+        # print(node.getAttribute("id"))
+        if node.nodeType == node.ELEMENT_NODE:
+            node: Element = node
+            print(node.tagName + " " + node.getAttribute("id"))
