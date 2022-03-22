@@ -61,7 +61,7 @@ def get_polygon_by_id(search_id: str) -> Polygon | None:
         for polygon in dom.getElementsByTagName("polygon"):
             polygon: Element = polygon
             if polygon.nodeType == polygon.ELEMENT_NODE:
-                if polygon.getAttribute("id") == search_id:
+                if search_id == polygon.getAttribute("id"):
                     vertexes: [Vertex] = []
                     for vertex in polygon.childNodes:
                         vertex: Element = vertex
@@ -72,10 +72,41 @@ def get_polygon_by_id(search_id: str) -> Polygon | None:
     return None
 
 
-print(get_all_polygons())
-print(get_polygon_by_id("3"))
+def get_all_vertexes_by_polygon_id(search_id: str) -> [Vertex]:
+    with parse(XML_FILE) as dom:
+        dom: Document = dom
+        for polygon in dom.getElementsByTagName("polygon"):
+            polygon: Element = polygon
+            if polygon.nodeType == polygon.ELEMENT_NODE:
+                if search_id == polygon.getAttribute("id"):
+                    vertexes: [Vertex] = []
+                    for vertex in polygon.childNodes:
+                        vertex: Element = vertex
+                        if vertex.nodeType == vertex.ELEMENT_NODE:
+                            vertexes.append(
+                                Vertex(vertex.getAttribute("id"), vertex.getAttribute("x"), vertex.getAttribute("y")))
+                    return vertexes
+    return []
+
+
+def get_vertex_by_id(search_id: str) -> Vertex | None:
+    with parse(XML_FILE) as dom:
+        dom: Document = dom
+        for vertex in dom.getElementsByTagName("vertex"):
+            vertex: Element = vertex
+            if vertex.nodeType == vertex.ELEMENT_NODE:
+                if search_id == vertex.getAttribute("id"):
+                    return Vertex(vertex.getAttribute("id"), vertex.getAttribute("x"), vertex.getAttribute("y"))
+    return None
+
 
 dtd_validate()
+
+print(get_all_polygons())
+print(get_polygon_by_id("1"))
+print(get_all_vertexes_by_polygon_id("1"))
+print(get_vertex_by_id("1"))
+
 # Створюємо кореневий елемент
 root: Document = Document()
 xml: Element = root.createElement('map')
