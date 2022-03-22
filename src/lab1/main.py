@@ -1,8 +1,11 @@
 from xml.dom.minidom import Document
 from xml.dom.minidom import Element
+from xml.dom.minidom import parse
 
 from lxml import etree
 from lxml.etree import XMLSyntaxError
+
+XML_FILE = "resources/sample.xml"
 
 
 class Vertex:
@@ -27,14 +30,28 @@ class Polygon:
 def dtd_validate() -> None:
     parser = etree.XMLParser(dtd_validation=True)
     try:
-        etree.parse("resources/sample.xml", parser)
+        etree.parse(XML_FILE, parser)
     except XMLSyntaxError as e:
         print(e)
         raise e
 
 
 def get_all_polygons() -> [Polygon]:
-    return [Polygon("1"), Polygon("2", [Vertex("1", 5.5, 4.5), Vertex("2", 55.5, 9.5)])]
+    result: [Polygon] = []
+    with parse(XML_FILE) as dom:
+        dom: Document = dom
+        geometry: Element = dom.getElementsByTagName("geometry")[0]
+        for polygon in geometry.childNodes:
+            polygon: Element = polygon
+            if polygon.nodeType == polygon.ELEMENT_NODE:
+                vertexes: [Vertex] = []
+                for vertex in polygon.childNodes:
+                    vertex: Element = vertex
+                    if vertex.nodeType == vertex.ELEMENT_NODE:
+                        vertexes.append(
+                            Vertex(vertex.getAttribute("id"), vertex.getAttribute("x"), vertex.getAttribute("y")))
+                result.append(Polygon(polygon.getAttribute("id"), vertexes))
+    return result
 
 
 print(get_all_polygons())
@@ -73,19 +90,18 @@ save_path_file = "resources/countries.xml"
 with open(save_path_file, "w") as f:
     f.write(xml_str)
 
-import xml
-from xml.dom.minidom import Document, Element
+from xml.dom.minidom import Document
 
-save_path_file = "resources/countries.xml"
-with xml.dom.minidom.parse(save_path_file) as dom:
-    dom2: Document = dom
-    mapElement: Element = dom2.getElementsByTagName("map")[0]
-    print(mapElement.getAttribute("id"))
-    lis = mapElement.childNodes
-    for node in lis:
-        # print(type(node))
-        # node: Element = node
-        # print(node.getAttribute("id"))
-        if node.nodeType == node.ELEMENT_NODE:
-            node: Element = node
-            print(node.tagName + " " + node.getAttribute("id"))
+# save_path_file = "resources/countries.xml"
+# with parse(save_path_file) as dom:
+#     dom2: Document = dom
+#     mapElement: Element = dom2.getElementsByTagName("map")[0]
+#     print(mapElement.getAttribute("id"))
+#     lis = mapElement.childNodes
+#     for node in lis:
+#         # print(type(node))
+#         # node: Element = node
+#         # print(node.getAttribute("id"))
+#         if node.nodeType == node.ELEMENT_NODE:
+#             node: Element = node
+#             print(node.tagName + " " + node.getAttribute("id"))
