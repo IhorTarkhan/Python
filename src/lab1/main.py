@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from xml.dom.minidom import Document
 from xml.dom.minidom import Element
 from xml.dom.minidom import parse
@@ -40,8 +42,7 @@ def get_all_polygons() -> [Polygon]:
     result: [Polygon] = []
     with parse(XML_FILE) as dom:
         dom: Document = dom
-        geometry: Element = dom.getElementsByTagName("geometry")[0]
-        for polygon in geometry.childNodes:
+        for polygon in dom.getElementsByTagName("polygon"):
             polygon: Element = polygon
             if polygon.nodeType == polygon.ELEMENT_NODE:
                 vertexes: [Vertex] = []
@@ -54,7 +55,25 @@ def get_all_polygons() -> [Polygon]:
     return result
 
 
+def get_polygon_by_id(search_id: str) -> Polygon | None:
+    with parse(XML_FILE) as dom:
+        dom: Document = dom
+        for polygon in dom.getElementsByTagName("polygon"):
+            polygon: Element = polygon
+            if polygon.nodeType == polygon.ELEMENT_NODE:
+                if polygon.getAttribute("id") == search_id:
+                    vertexes: [Vertex] = []
+                    for vertex in polygon.childNodes:
+                        vertex: Element = vertex
+                        if vertex.nodeType == vertex.ELEMENT_NODE:
+                            vertexes.append(
+                                Vertex(vertex.getAttribute("id"), vertex.getAttribute("x"), vertex.getAttribute("y")))
+                    return Polygon(polygon.getAttribute("id"), vertexes)
+    return None
+
+
 print(get_all_polygons())
+print(get_polygon_by_id("3"))
 
 dtd_validate()
 # Створюємо кореневий елемент
