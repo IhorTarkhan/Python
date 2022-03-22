@@ -1,6 +1,20 @@
 from xml.dom.minidom import Document
 from xml.dom.minidom import Element
 
+from lxml import etree
+from lxml.etree import XMLSyntaxError
+
+
+def dtd_validate() -> None:
+    parser = etree.XMLParser(dtd_validation=True)
+    try:
+        etree.parse("resources/sample.xml", parser)
+    except XMLSyntaxError as e:
+        print(e)
+        raise e
+
+
+dtd_validate()
 # Створюємо кореневий елемент
 root: Document = Document()
 xml: Element = root.createElement('map')
@@ -29,15 +43,15 @@ city2.setAttribute("count", "350000")
 city2.setAttribute("iscap", "0")
 xml.appendChild(city2)
 
-xml_str = root.toxml()
-save_path_file = "countries.xml"
+xml_str = root.toprettyxml(indent="\t")
+save_path_file = "resources/countries.xml"
 with open(save_path_file, "w") as f:
     f.write(xml_str)
 
 import xml
 from xml.dom.minidom import Document, Element
 
-save_path_file = "countries.xml"
+save_path_file = "resources/countries.xml"
 with xml.dom.minidom.parse(save_path_file) as dom:
     dom2: Document = dom
     mapElement: Element = dom2.getElementsByTagName("map")[0]
