@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-        <!ELEMENT geometry (polygons)*>
-        <!ELEMENT polygons (vertex+)>
-        <!ATTLIST polygons id CDATA #REQUIRED>
+        <!ELEMENT geometry (polygon)*>
+        <!ELEMENT polygon (vertex+)>
+        <!ATTLIST polygon id CDATA #REQUIRED>
         <!ELEMENT vertex EMPTY>
         <!ATTLIST vertex id CDATA #REQUIRED x CDATA #REQUIRED y CDATA #REQUIRED>

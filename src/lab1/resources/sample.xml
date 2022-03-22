@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF8" ?>
 <!DOCTYPE geometry SYSTEM "/Users/ihor/IdeaProjects/Python/src/lab1/resources/sample.dtd" >
 <geometry>
-    <polygons id="1">
+    <polygon id="1">
         <vertex id="1" x="1.0" y="1.0"/>
         <vertex id="2" x="2.0" y="1.0"/>
         <vertex id="3" x="2.0" y="2.0"/>
-    </polygons>
-    <polygons id="2">
+    </polygon>
+    <polygon id="2">
         <vertex id="4" x="-5.5" y="-6.7"/>
-    </polygons>
-    <polygons id="3">
+    </polygon>
+    <polygon id="3">
         <vertex id="5" x="-2.0" y="3.6"/>
         <vertex id="6" x="12.0" y="4.6"/>
         <vertex id="7" x="14.1" y="5.7"/>
         <vertex id="8" x="-7.0" y="6.6"/>
         <vertex id="9" x="6.9" y="6.9"/>
-    </polygons>
+    </polygon>
 </geometry>

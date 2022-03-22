@@ -5,6 +5,25 @@ from lxml import etree
 from lxml.etree import XMLSyntaxError
 
 
+class Vertex:
+    def __init__(self, _id: str, x: float, y: float):
+        self.id: str = _id
+        self.x: float = x
+        self.y: float = y
+
+    def __repr__(self):
+        return 'Vertex(id={0}, x={1}, y={2})'.format(self.id, self.x, self.y)
+
+
+class Polygon:
+    def __init__(self, _id: str, points: [] = None):
+        self.id: str = _id
+        self.points: [str] = [] if points is None else points
+
+    def __repr__(self):
+        return 'Polygon(id={0}, points={1})'.format(self.id, self.points)
+
+
 def dtd_validate() -> None:
     parser = etree.XMLParser(dtd_validation=True)
     try:
@@ -13,6 +32,12 @@ def dtd_validate() -> None:
         print(e)
         raise e
 
+
+def get_all_polygons() -> [Polygon]:
+    return [Polygon("1"), Polygon("2", [Vertex("1", 5.5, 4.5), Vertex("2", 55.5, 9.5)])]
+
+
+print(get_all_polygons())
 
 dtd_validate()
 # Створюємо кореневий елемент
