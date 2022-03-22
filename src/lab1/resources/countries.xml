@@ -1,7 +1,0 @@
-<?xml version="1.0" ?>
-<map>
-	<country id="1" name="Україна"/>
-	<country id="2" name="Білорусь"/>
-	<city id="1" name="Київ" count="3000000" iscap="1"/>
-	<city id="5" name="Вітебськ" count="350000" iscap="0"/>
-</map>
