@@ -15,7 +15,7 @@ class XmlService:
     DOCUMENT_PREFIX: str = '<!DOCTYPE geometry SYSTEM "sample.dtd" >'
 
     @staticmethod
-    def dtd_validate() -> None:
+    def __dtd_validate() -> None:
         parser = etree.XMLParser(dtd_validation=True)
         try:
             etree.parse(XmlService.XML_FILE, parser)
@@ -25,6 +25,7 @@ class XmlService:
 
     @staticmethod
     def get_all_polygons() -> [Polygon]:
+        XmlService.__dtd_validate()
         result: [Polygon] = []
         with parse(XmlService.XML_FILE) as dom:
             dom: Document = dom
@@ -42,6 +43,7 @@ class XmlService:
 
     @staticmethod
     def get_polygon_by_id(search_id: str) -> Optional[Polygon]:
+        XmlService.__dtd_validate()
         with parse(XmlService.XML_FILE) as dom:
             dom: Document = dom
             for polygon in dom.getElementsByTagName("polygon"):
@@ -60,6 +62,7 @@ class XmlService:
 
     @staticmethod
     def get_all_vertexes_by_polygon_id(search_id: str) -> [Vertex]:
+        XmlService.__dtd_validate()
         with parse(XmlService.XML_FILE) as dom:
             dom: Document = dom
             for polygon in dom.getElementsByTagName("polygon"):
@@ -78,6 +81,7 @@ class XmlService:
 
     @staticmethod
     def get_vertex_by_id(search_id: str) -> Optional[Vertex]:
+        XmlService.__dtd_validate()
         with parse(XmlService.XML_FILE) as dom:
             dom: Document = dom
             for vertex in dom.getElementsByTagName("vertex"):
@@ -89,6 +93,7 @@ class XmlService:
 
     @staticmethod
     def save_all(polygons: [Polygon]) -> None:
+        XmlService.__dtd_validate()
         document: Document = Document()
         geometry: Element = document.createElement('geometry')
         document.appendChild(geometry)
