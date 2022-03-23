@@ -8,5 +8,6 @@
     </polygon>
     <polygon id="2">
         <vertex id="4" x="-5.5" y="-6.7"/>
+        <vertex id="5" x="12.5" y="-16.0"/>
     </polygon>
 </geometry>
