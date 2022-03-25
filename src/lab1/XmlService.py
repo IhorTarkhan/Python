@@ -6,8 +6,8 @@ from xml.dom.minidom import parse
 from lxml import etree
 from lxml.etree import XMLSyntaxError
 
-from src.lab1.entity.Polygon import Polygon
-from src.lab1.entity.Vertex import Vertex
+from src.entity.Polygon import Polygon
+from src.entity.Vertex import Vertex
 
 
 class XmlService:

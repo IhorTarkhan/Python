@@ -1,8 +1,8 @@
 from typing import Optional
 
 from src.lab1.XmlService import XmlService
-from src.lab1.entity.Polygon import Polygon
-from src.lab1.entity.Vertex import Vertex
+from src.entity.Polygon import Polygon
+from src.entity.Vertex import Vertex
 
 
 class VertexRepository:

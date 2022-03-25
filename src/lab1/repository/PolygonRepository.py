@@ -1,7 +1,7 @@
 from typing import Optional
 
 from src.lab1.XmlService import XmlService
-from src.lab1.entity.Polygon import Polygon
+from src.entity.Polygon import Polygon
 
 
 class PolygonRepository:

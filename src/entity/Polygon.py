@@ -1,4 +1,4 @@
-from src.lab1.entity.Vertex import Vertex
+from src.entity.Vertex import Vertex
 
 
 class Polygon:

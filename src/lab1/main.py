@@ -1,5 +1,5 @@
-from src.lab1.entity.Polygon import Polygon
-from src.lab1.entity.Vertex import Vertex
+from src.entity.Polygon import Polygon
+from src.entity.Vertex import Vertex
 from src.lab1.repository.PolygonRepository import PolygonRepository
 from src.lab1.repository.VertexRepository import VertexRepository
 
