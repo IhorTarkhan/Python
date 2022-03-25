@@ -1,30 +1,26 @@
 from typing import Optional
 
-from src.lab1.XmlService import XmlService
 from src.entity.Polygon import Polygon
+from src.lab1.XmlService import XmlService
+from src.repository.PolygonRepository import PolygonRepository
 
 
-class PolygonRepository:
-    @staticmethod
-    def find_polygon_by_id(_id: str) -> Optional[Polygon]:
+class PolygonRepositoryXml(PolygonRepository):
+    def find_polygon_by_id(self, _id: str) -> Optional[Polygon]:
         return XmlService.get_polygon_by_id(_id)
 
-    @staticmethod
-    def find_all_polygons() -> [Polygon]:
+    def find_all_polygons(self) -> [Polygon]:
         return XmlService.get_all_polygons()
 
-    @staticmethod
-    def save_all_polygon(polygons: [Polygon]) -> None:
+    def save_all_polygon(self, polygons: [Polygon]) -> None:
         XmlService.save_all(polygons)
 
-    @staticmethod
-    def add_polygon(polygon: Polygon) -> None:
+    def add_polygon(self, polygon: Polygon) -> None:
         polygons: [Polygon] = XmlService.get_all_polygons()
         polygons.append(polygon)
         XmlService.save_all(polygons)
 
-    @staticmethod
-    def delete_polygon_by_id(_id: str) -> None:
+    def delete_polygon_by_id(self, _id: str) -> None:
         polygons: [Polygon] = XmlService.get_all_polygons()
         deleted_element = None
         for polygon in polygons:
