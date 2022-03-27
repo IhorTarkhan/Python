@@ -10,9 +10,6 @@ class PolygonRepository:
     def find_all_polygons(self) -> [Polygon]:
         pass
 
-    def save_all_polygon(self, polygons: [Polygon]) -> None:
-        pass
-
     def add_polygon(self, polygon: Polygon) -> None:
         pass
 

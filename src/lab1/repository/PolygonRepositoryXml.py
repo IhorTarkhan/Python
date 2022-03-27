@@ -12,9 +12,6 @@ class PolygonRepositoryXml(PolygonRepository):
     def find_all_polygons(self) -> [Polygon]:
         return XmlService.get_all_polygons()
 
-    def save_all_polygon(self, polygons: [Polygon]) -> None:
-        XmlService.save_all(polygons)
-
     def add_polygon(self, polygon: Polygon) -> None:
         polygons: [Polygon] = XmlService.get_all_polygons()
         polygons.append(polygon)
