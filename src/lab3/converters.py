@@ -4,10 +4,18 @@ from src.entity.Polygon import Polygon
 from src.entity.Vertex import Vertex
 
 
-def __polygon_to_dictionary(p: Polygon) -> dict:
-    _data = p.__dict__
-    _data["points"] = list(map(lambda x: x.__dict__, p.points))
-    return _data
+def __polygon_to_dictionary(data: Polygon) -> dict:
+    response = data.__dict__
+    response["points"] = list(map(lambda x: x.__dict__, data.points))
+    return response
+
+
+def __vertex_from_dictionary(data: dict) -> Vertex:
+    return Vertex(data["id"], data["x"], data["y"])
+
+
+def __polygon_from_dictionary(data: dict) -> Polygon:
+    return Polygon(data["id"], list(map(__vertex_from_dictionary, data["points"])))
 
 
 def to_json_vertex(data: Vertex) -> str:
@@ -28,19 +36,23 @@ def to_json_polygon_list(data: [Polygon]) -> str:
 
 
 def from_json_vertex(data: str) -> Vertex:
-    pass
+    loads: dict = json.loads(data)
+    return __vertex_from_dictionary(loads)
 
 
 def from_json_polygon(data: str) -> Polygon:
-    pass
+    loads: dict = json.loads(data)
+    return __polygon_from_dictionary(loads)
 
 
 def from_json_vertex_list(data: str) -> [Vertex]:
-    pass
+    loads: list = json.loads(data)
+    return list(map(__vertex_from_dictionary, loads))
 
 
 def from_json_polygon_list(data: str) -> [Polygon]:
-    pass
+    loads: list = json.loads(data)
+    return list(map(__polygon_from_dictionary, loads))
 
 
 vertex_json_1 = to_json_vertex(Vertex("1", "2", "3"))
@@ -54,3 +66,9 @@ print(polygon_json_1)
 print(polygon_json_2)
 print(vertex_list_json_1)
 print(polygon_list_json_1)
+print()
+print(from_json_vertex(vertex_json_1))
+print(from_json_polygon(polygon_json_1))
+print(from_json_polygon(polygon_json_2))
+print(from_json_vertex_list(vertex_list_json_1))
+print(from_json_polygon_list(polygon_list_json_1))
