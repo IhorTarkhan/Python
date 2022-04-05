@@ -1,13 +1,23 @@
-import socket
+import socket as socket_util
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # создаем сокет
-sock.bind(('', 55000))  # связываем сокет с портом, где он будет ожидать сообщения
-sock.listen(10)  # указываем сколько может сокет принимать соединений
-print('Server is running, please, press ctrl+c to stop')
+HOST = 'localhost'
+PORT = 55000
+ENCODING = 'UTF-8'
+
+socket = socket_util.socket(socket_util.AF_INET, socket_util.SOCK_STREAM)
+socket.bind((HOST, PORT))
+socket.listen(10)
+
+
+def process(request: str):
+    return request
+
+
 while True:
-    conn, addr = sock.accept()  # начинаем принимать соединения
-    print('connected:', addr)  # выводим информацию о подключении
-    data = conn.recv(1024)  # принимаем данные от клиента, по 1024 байт
-    print(str(data))
-    conn.send(data.upper())  # в ответ клиенту отправляем сообщение в верхнем регистре
-conn.close()  # закрываем соединение
+    connection, _ = socket.accept()
+    request = connection.recv(1024)
+    request_str: str = request.decode(ENCODING)
+    response_str = process(request_str)
+    response = request_str.encode(ENCODING)
+    connection.send(response)
+conn.close()
