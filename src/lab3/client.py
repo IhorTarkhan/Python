@@ -1,23 +1,24 @@
-import json
 import socket as socket_util
 
-from src.entity.Vertex import Vertex
+from src.lab3.converters import *
 
 HOST = 'localhost'
 PORT = 55000
 ENCODING = 'UTF-8'
+BUFFER_SIZE = 1024
 
-socket = socket_util.socket(socket_util.AF_INET, socket_util.SOCK_STREAM)
 data = Vertex("1213", "12", "13")
 
-socket.connect((HOST, PORT))
-request_str: str = json.dumps(data.__dict__)
-request: bytes = request_str.encode(ENCODING)
-socket.send(request)
-response: bytes = socket.recv(1024)
-response_str = response.decode(ENCODING)
-socket.close()
 
-print(response_str)
-loads: Vertex = json.loads(response_str)
-print(loads["id"])
+def send(request: str) -> str:
+    socket = socket_util.socket(socket_util.AF_INET, socket_util.SOCK_STREAM)
+    socket.connect((HOST, PORT))
+    socket.send(request.encode(ENCODING))
+    result = socket.recv(BUFFER_SIZE).decode(ENCODING)
+    socket.close()
+    return result
+
+
+response = send(to_json_vertex(data))
+print(response)
+print(from_json_vertex(response))
