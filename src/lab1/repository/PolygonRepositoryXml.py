@@ -1,8 +1,8 @@
 from typing import Optional
 
-from src.entity.Polygon import Polygon
+from src.common_data.entity.Polygon import Polygon
 from src.lab1.XmlService import XmlService
-from src.repository.PolygonRepository import PolygonRepository
+from src.common_data.repository.PolygonRepository import PolygonRepository
 
 
 class PolygonRepositoryXml(PolygonRepository):

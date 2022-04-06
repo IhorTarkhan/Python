@@ -1,6 +1,6 @@
 from typing import Optional
 
-from src.entity.Polygon import Polygon
+from src.common_data.entity.Polygon import Polygon
 
 
 class PolygonRepository:

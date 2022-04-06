@@ -1,9 +1,9 @@
 from typing import Optional
 
-from src.entity.Polygon import Polygon
+from src.common_data.entity.Polygon import Polygon
 from src.lab3.client import send
 from src.lab3.converters import from_json, to_json
-from src.repository.PolygonRepository import PolygonRepository
+from src.common_data.repository.PolygonRepository import PolygonRepository
 
 
 class PolygonRepositorySocket(PolygonRepository):

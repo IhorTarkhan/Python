@@ -1,9 +1,9 @@
 from typing import Optional
 
-from src.entity.Polygon import Polygon
-from src.entity.Vertex import Vertex
+from src.common_data.entity.Polygon import Polygon
+from src.common_data.entity.Vertex import Vertex
 from src.lab1.XmlService import XmlService
-from src.repository.VertexRepository import VertexRepository
+from src.common_data.repository.VertexRepository import VertexRepository
 
 
 class VertexRepositoryXml(VertexRepository):

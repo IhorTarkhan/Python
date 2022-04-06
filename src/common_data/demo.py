@@ -1,7 +1,7 @@
-from src.entity.Polygon import Polygon
-from src.entity.Vertex import Vertex
-from src.repository.PolygonRepository import PolygonRepository
-from src.repository.VertexRepository import VertexRepository
+from src.common_data.entity.Polygon import Polygon
+from src.common_data.entity.Vertex import Vertex
+from src.common_data.repository.PolygonRepository import PolygonRepository
+from src.common_data.repository.VertexRepository import VertexRepository
 
 polygons = None
 vertexes = None

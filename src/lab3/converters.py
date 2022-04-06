@@ -1,7 +1,7 @@
 import json
 
-from src.entity.Polygon import Polygon
-from src.entity.Vertex import Vertex
+from src.common_data.entity.Polygon import Polygon
+from src.common_data.entity.Vertex import Vertex
 
 
 def __polygon_to_dictionary(data: Polygon) -> dict:

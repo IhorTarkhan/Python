@@ -1,4 +1,4 @@
-from src.entity.Vertex import Vertex
+from src.common_data.entity.Vertex import Vertex
 
 
 class Polygon:
