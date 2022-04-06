@@ -1,0 +1,4 @@
+HOST = 'localhost'
+PORT = 5500
+ENCODING = 'UTF-8'
+BUFFER_SIZE = 1024

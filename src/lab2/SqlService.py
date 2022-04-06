@@ -4,7 +4,7 @@ import sqlite3
 class SqlService:
     @staticmethod
     def prepare() -> None:
-        connect: sqlite3.Connection = sqlite3.connect("resources/example.db")
+        connect: sqlite3.Connection = sqlite3.connect("../lab2/resources/example.db")
         cursor: sqlite3.Cursor = connect.cursor()
 
         cursor.execute("PRAGMA foreign_keys = ON;")
@@ -31,7 +31,7 @@ class SqlService:
     @staticmethod
     def sql_execute(query, parameters=None):
         SqlService.prepare()
-        connect: sqlite3.Connection = sqlite3.connect("resources/example.db")
+        connect: sqlite3.Connection = sqlite3.connect("../lab2/resources/example.db")
         cursor: sqlite3.Cursor = connect.cursor()
 
         if parameters is None:
@@ -45,7 +45,7 @@ class SqlService:
     @staticmethod
     def sql_get_element(result_parser, query, parameters=None):
         SqlService.prepare()
-        connect: sqlite3.Connection = sqlite3.connect("resources/example.db")
+        connect: sqlite3.Connection = sqlite3.connect("../lab2/resources/example.db")
         cursor: sqlite3.Cursor = connect.cursor()
 
         if parameters is None:
@@ -64,7 +64,7 @@ class SqlService:
         SqlService.prepare()
         result = []
 
-        connect: sqlite3.Connection = sqlite3.connect("resources/example.db")
+        connect: sqlite3.Connection = sqlite3.connect("../lab2/resources/example.db")
         cursor: sqlite3.Cursor = connect.cursor()
 
         if parameters is None:

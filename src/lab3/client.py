@@ -1,13 +1,6 @@
 import socket as socket_util
 
-from src.lab3.converters import *
-
-HOST = 'localhost'
-PORT = 55000
-ENCODING = 'UTF-8'
-BUFFER_SIZE = 1024
-
-data = Vertex("1213", "12", "13")
+from src.lab3.const import *
 
 
 def send(request: str) -> str:
@@ -17,8 +10,3 @@ def send(request: str) -> str:
     result = socket.recv(BUFFER_SIZE).decode(ENCODING)
     socket.close()
     return result
-
-
-response = send(to_json_vertex(data))
-print(response)
-print(from_json_vertex(response))
