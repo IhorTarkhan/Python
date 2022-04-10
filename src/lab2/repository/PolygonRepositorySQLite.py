@@ -34,12 +34,14 @@ class PolygonRepositorySQLite(PolygonRepository):
 
         return polygons
 
-    def add_polygon(self, polygon: Polygon) -> None:
+    def add_polygon(self, polygon: Polygon) -> bool:
         SqlService.sql_execute(
             "INSERT INTO polygon VALUES (:id);",
             {"id": polygon.id})
+        return True
 
-    def delete_polygon_by_id(self, _id: str) -> None:
+    def delete_polygon_by_id(self, _id: str) -> bool:
         SqlService.sql_execute(
             "DELETE FROM polygon WHERE id = :id;",
             {"id": _id})
+        return True

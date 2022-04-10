@@ -10,11 +10,11 @@ class VertexRepository:
     def find_all_vertex_in_polygon(self, polygon_id: str) -> [Vertex]:
         pass
 
-    def add_vertex_to_polygon_by_id(self, _id: str, vertex: Vertex) -> None:
+    def add_vertex_to_polygon_by_id(self, _id: str, vertex: Vertex) -> bool:
         pass
 
-    def update_vertex_by_id(self, _id: str, new_x: str, new_y: str) -> None:
+    def update_vertex_by_id(self, _id: str, new_x: str, new_y: str) -> bool:
         pass
 
-    def delete_vertex_by_id(self, _id: str) -> None:
+    def delete_vertex_by_id(self, _id: str) -> bool:
         pass

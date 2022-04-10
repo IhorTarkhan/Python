@@ -10,8 +10,8 @@ class PolygonRepository:
     def find_all_polygons(self) -> [Polygon]:
         pass
 
-    def add_polygon(self, polygon: Polygon) -> None:
+    def add_polygon(self, polygon: Polygon) -> bool:
         pass
 
-    def delete_polygon_by_id(self, _id: str) -> None:
+    def delete_polygon_by_id(self, _id: str) -> bool:
         pass

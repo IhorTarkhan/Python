@@ -12,12 +12,13 @@ class PolygonRepositoryXml(PolygonRepository):
     def find_all_polygons(self) -> [Polygon]:
         return XmlService.get_all_polygons()
 
-    def add_polygon(self, polygon: Polygon) -> None:
+    def add_polygon(self, polygon: Polygon) -> bool:
         polygons: [Polygon] = XmlService.get_all_polygons()
         polygons.append(polygon)
         XmlService.save_all(polygons)
+        return True
 
-    def delete_polygon_by_id(self, _id: str) -> None:
+    def delete_polygon_by_id(self, _id: str) -> bool:
         polygons: [Polygon] = XmlService.get_all_polygons()
         deleted_element = None
         for polygon in polygons:
@@ -28,3 +29,4 @@ class PolygonRepositoryXml(PolygonRepository):
         else:
             raise KeyError("can not found polygon with id " + _id)
         XmlService.save_all(polygons)
+        return True

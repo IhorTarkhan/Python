@@ -58,6 +58,10 @@ def _from_json_polygon_list(data: str) -> [Polygon]:
 def to_json(data) -> str:
     if data is None:
         return "None"
+    if data is True:
+        return "True"
+    if data is False:
+        return "False"
     if type(data) is Vertex:
         return _to_json_vertex(data).replace(" ", "")
     if type(data) is Polygon:
@@ -70,6 +74,8 @@ def to_json(data) -> str:
 
 
 def from_json(data: str):
+    if type(data) is not str:
+        return data
     if data == "None":
         return None
     loads = json.loads(data)

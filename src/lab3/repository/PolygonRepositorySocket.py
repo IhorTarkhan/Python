@@ -13,8 +13,8 @@ class PolygonRepositorySocket(PolygonRepository):
     def find_all_polygons(self) -> [Polygon]:
         return from_json(send("find_all_polygons"))
 
-    def add_polygon(self, polygon: Polygon) -> None:
+    def add_polygon(self, polygon: Polygon) -> bool:
         return from_json(send("add_polygon " + to_json(polygon)))
 
-    def delete_polygon_by_id(self, _id: str) -> None:
+    def delete_polygon_by_id(self, _id: str) -> bool:
         return from_json(send("delete_polygon_by_id " + _id))

@@ -20,17 +20,20 @@ class VertexRepositorySQLite(VertexRepository):
             {"polygon_id": polygon_id}
         )
 
-    def add_vertex_to_polygon_by_id(self, _id: str, vertex: Vertex) -> None:
+    def add_vertex_to_polygon_by_id(self, _id: str, vertex: Vertex) -> bool:
         SqlService.sql_execute(
             "INSERT INTO vertex VALUES (:id, :x, :y, :polygon_id);",
             {"id": vertex.id, "x": vertex.x, "y": vertex.y, "polygon_id": _id})
+        return True
 
-    def update_vertex_by_id(self, _id: str, new_x: str, new_y: str) -> None:
+    def update_vertex_by_id(self, _id: str, new_x: str, new_y: str) -> bool:
         SqlService.sql_execute(
             "UPDATE vertex SET x = :x, y = :y WHERE id = :id;",
             {"id": _id, "x": new_x, "y": new_y})
+        return True
 
-    def delete_vertex_by_id(self, _id: str) -> None:
+    def delete_vertex_by_id(self, _id: str) -> bool:
         SqlService.sql_execute(
             "DELETE FROM vertex WHERE id = :id;",
             {"id": _id})
+        return True
